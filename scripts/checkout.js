@@ -20,7 +20,7 @@ cart.forEach((cartItem) =>{
         }
     });
     cartSummaryHTML += `
-    <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">sa
+    <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date">
                 Delivery date: Tuesday, June 21
             </div>
