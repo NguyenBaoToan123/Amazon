@@ -88,4 +88,14 @@ document.querySelectorAll('.js-add-to-cart')
         })
     });
 
+const selectElement = document.querySelector('.product-quantity-container select');
+
+// Lắng nghe sự kiện thay đổi (change) khi người dùng chọn một giá trị mới
+selectElement.addEventListener('change', function() {
+    // Lấy giá trị của mục được chọn
+    const quantity = selectElement.value;
+    
+    console.log('Số lượng chọn: ', quantity); // In ra số lượng
+});
+
 
