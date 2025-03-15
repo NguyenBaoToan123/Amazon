@@ -95,7 +95,7 @@ export function renderOrderSummary() {
                     </div>
                     <div class="delivery-option-price">
                         ${priceString} Shipping
-                </div>
+                    </div>
                 </div>
             </div>
             `
