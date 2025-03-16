@@ -1,15 +1,15 @@
 class Cart {
-    cartItems = undefined;
-    localStorageKey = undefined;
+    cartItems = undefined; //public property
+    #localStorageKey = undefined; //private property
     //constructor is a normal method but it gonna run automatically
     
     constructor(localStorageKey){
-        this.localStorageKey = localStorageKey;
-        this.loadFromStorage();
+        this.#localStorageKey = localStorageKey;
+        this.#loadFromStorage();
     }
 
-    loadFromStorage() {
-        this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
+    #loadFromStorage() {
+        this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
 
         if (!this.cartItems) {
             this.cartItems = [{
@@ -25,7 +25,7 @@ class Cart {
     };
 
     saveToStorage() {
-        localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+        localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
 
     };
 
@@ -87,7 +87,6 @@ const cart = new Cart('cart-oop');
 const businessCart = new Cart('cart-business');
 // cart and businees are instance of the class
 
-cart.localStorageKey = 'aaa'
 
 console.log(cart);
 console.log(businessCart);
