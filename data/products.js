@@ -33,26 +33,27 @@ class Product {
   getPrice () {
     return `$${formatCurrency(this.priceCents)}`;
   }
+
+  extraInfoHTML() {
+    return '';
+  }
 }
 
-const product1 = new Product({
-  id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-  image: "images/products/athletic-cotton-socks-6-pairs.jpg",
-  name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
-  rating: {
-    stars: 4.5,
-    count: 87
-  },
-  priceCents: 1090,
-  keywords: [
-    "socks",
-    "sports",
-    "apparel"
-  ]
-},);
+class Clothing extends Product {
+    sizeChartLink;
+    constructor(productDetails){
+      super(productDetails)
+      this.sizeChartLink = productDetails.sizeChartLink;
+    }
 
-console.log(product1);
-
+    extraInfoHTML() {
+      //super.extraInfoHTML();
+      return `
+        <a href = "${this.sizeChartLink}" target = "_blank">
+          Size Chart
+        </a>`;
+    }
+}
 
 
 export const products = [
@@ -715,7 +716,10 @@ export const products = [
     ]
   }
 ].map((productDetails) => {
-  return new Product(productDetails);
+    if(productDetails.type === "clothing"){
+      return new Clothing(productDetails)
+    }
+      return new Product(productDetails);
 }); //we transform each regular object to a class by using class
 
 console.log(products)
