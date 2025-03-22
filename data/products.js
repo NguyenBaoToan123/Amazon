@@ -54,6 +54,38 @@ class Clothing extends Product {
         </a>`;
     }
 }
+/*
+const date = new Date();
+console.log(date);
+console.log(date.toLocaleTimeString());
+
+
+console.log(this);
+
+const object2 = {
+  a : 2,
+  b: this.a
+};
+
+
+function logThis() {
+  console.log(this);
+}
+
+logThis();
+logThis.call('hello');//it call the function and replace this to be equal to hello
+
+
+
+const object3 = {
+  method : () => {
+    console.log(this);
+  }
+}
+
+object3.method(); //undefined
+*/
+
 
 
 export const products = [
@@ -721,5 +753,3 @@ export const products = [
     }
       return new Product(productDetails);
 }); //we transform each regular object to a class by using class
-
-console.log(products)
