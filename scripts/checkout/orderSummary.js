@@ -141,5 +141,5 @@ export function renderOrderSummary() {
         })
 
 }
-renderOrderSummary()
+
 
