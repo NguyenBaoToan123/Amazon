@@ -22,7 +22,7 @@ export function renderOrderSummary() {
         const deliverOptionId = cartItem.deliveryOptionId
 
         let deliveryOption = getDeliveryOption(deliverOptionId)
-
+        
         const today = dayjs();
         const deliveryDate = today.add(deliveryOption.deliveryDays,'days');
         const dateString = deliveryDate.format('dddd, MMMM D');
