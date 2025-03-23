@@ -1,7 +1,8 @@
 import { cart, updateCartQuantityItems } from "../data/cart.js";
-import { getDeliveryOption } from "../data/deliverOptions.js";
+import { getDeliveryDate, getDeliveryOption } from "../data/deliverOptions.js";
 import { getProduct, loadProductsFetch } from "../data/products.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'
+import { productTracking } from "./tracking.js";
 
 export const orders = JSON.parse(localStorage.getItem('orders')) || [];
 
@@ -36,8 +37,8 @@ async function returnOrderSummary(){
 
         const today = dayjs();
         const todayFormat = today.format('dddd, MMMM D')
-        const deliveryDate = today.add(deliveryOption.deliveryDays,'days');
-        const dateString = deliveryDate.format('dddd, MMMM D');
+
+        const dateString = getDeliveryDate(deliveryOption);
         orderHTML += `
             <div class="order-container">
 
@@ -82,13 +83,18 @@ async function returnOrderSummary(){
 
                 <div class="product-actions">
                 <a href="tracking.html">
-                    <button class="track-package-button button-secondary">
+                    <button class="track-package-button button-secondary js-track-package"
+                    data-product-id = "${matchingProduct.id}"
+                    data-product-quantity = "${cartItem.quantity}">
                     Track package
                     </button>
                 </a>
                 </div>
             </div>
             </div>`
+
+        
+        
     });
     document.querySelector('.js-order-grid')
         .innerHTML = orderHTML;
@@ -96,6 +102,16 @@ async function returnOrderSummary(){
     let cartQuantity = updateCartQuantityItems()
     document.querySelector('.js-cart-quantity')
         .innerHTML = cartQuantity
+
+    document.querySelectorAll('.js-track-package')
+    .forEach((link) => {
+        link.addEventListener('click', () => {
+            const productId = link.dataset.productId
+            const productQuantity = link.dataset.productQuantity
+            localStorage.setItem('trackingProduct', JSON.stringify({productId: `${productId}`, productQuantity: `${productQuantity}`})); 
+        })
+    })
+
 }
 
 returnOrderSummary()
