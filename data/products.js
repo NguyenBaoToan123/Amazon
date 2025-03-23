@@ -101,17 +101,20 @@ export function loadProductsFetch() {
   });
 
   console.log('load products')
-  })
+  })/*.catch((error) => {
+    console.log('Unexpected error. Please try again later.');
+  })*/
+
+  //it gonna run catch if it errors
   //fetch uses a promise
-  return promise.then(() => {
-    console.log('next step')
-  })
+  return promise
 }
 
 
 
 
-/*
+
+
 export function loadProducts(fun) {
   const xhr = new XMLHttpRequest()
 
@@ -125,12 +128,18 @@ export function loadProducts(fun) {
 
   console.log('load products')
   fun();
+  });
+
+  xhr.addEventListener('error',(error) => {
+    console.log('Unexpected error. Please try again later.');
   })
 
   xhr.open('GET','https://supersimplebackend.dev/products');
   xhr.send();
 }
-*/
+
+
+
 
 
 /*

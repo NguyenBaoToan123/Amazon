@@ -8,15 +8,25 @@ import { loadCart } from "../data/cart.js";
 //await = lets us wait for a promise to finish, before going to the next line.
 //async makes a function return a promise
 async function loadPage() {
-    console.log('load page')
-    await loadProductsFetch();
+    try {
+        //throw 'error1';
+        //throw: if error, it gonna go strange into catch 
+        console.log('load page')
+        await loadProductsFetch();
     
-    const value = await new Promise((resolve) => {
-        loadCart(() => {
-            resolve('value3') 
+        const value = await new Promise((resolve, reject) => {
+            //reject let us create an error in the future
+            loadCart(() => {
+                //reject('error3');
+                resolve('value3') 
+            });
+            //resolve let us go to the second step
         });
-        //resolve let us go to the second step
-    });
+
+    } catch (error) {
+        console.log('Unexpected error. Please try again later.');
+    }
+    
 
     renderOrderSummary();
     renderPaymentSummary();
