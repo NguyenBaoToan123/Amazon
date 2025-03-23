@@ -5,7 +5,30 @@ import { loadCart } from "../data/cart.js";
 //import '../data/cart-class.js'
 //import '../data/backend-practice.js';
 
+//await = lets us wait for a promise to finish, before going to the next line.
+//async makes a function return a promise
+async function loadPage() {
+    console.log('load page')
+    await loadProductsFetch();
+    
+    const value = await new Promise((resolve) => {
+        loadCart(() => {
+            resolve('value3') 
+        });
+        //resolve let us go to the second step
+    });
 
+    renderOrderSummary();
+    renderPaymentSummary();
+
+    return 'value2'
+    //= resolve 'value2' 
+}
+loadPage().then((value) => {
+    console.log('next step');
+});
+
+/*
 Promise.all([
     loadProductsFetch(),
     new Promise((resolve) => {
@@ -18,7 +41,7 @@ Promise.all([
     renderOrderSummary();
     renderPaymentSummary();
 });
-
+*/
 
 /*
 Promise.all([

@@ -101,16 +101,15 @@ export function loadProductsFetch() {
   });
 
   console.log('load products')
-  console.log(promise)
   })
   //fetch uses a promise
-  return promise
+  return promise.then(() => {
+    console.log('next step')
+  })
 }
 
 
-loadProductsFetch().then(() => {
-  console.log('next step')
-})
+
 
 /*
 export function loadProducts(fun) {
