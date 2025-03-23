@@ -62,6 +62,7 @@ export function loadCart(fun) {
   xhr.send();
 }
 
+
 export function updateCartQuantityItems (){ 
     let cartQuantity = 0
     cart.forEach((cartItem) => {
