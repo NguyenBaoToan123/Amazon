@@ -6,7 +6,7 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'
 
 export const orders = JSON.parse(localStorage.getItem('orders')) || [];
 
-
+console.log(orders)
 export function addOrder(order) {
     orders.unshift(order);
     //unshift add items at the front of the array
@@ -97,6 +97,7 @@ export async function returnOrderSummary(){
         
         
     });
+    
     document.querySelector('.js-order-grid')
         .innerHTML = orderHTML;
 
