@@ -2,7 +2,7 @@ import {cart, updateCartQuantityItems} from '../../data/cart.js'
 import { getProduct } from '../../data/products.js';
 import { getDeliveryOption } from '../../data/deliverOptions.js';
 import { formatCurrency } from '../utils/money.js';
-import { addOrder } from '../orders.js';
+import { addOrder, returnOrderSummary } from '../orders.js';
 
 
 export function renderPaymentSummary() {
@@ -82,6 +82,6 @@ export function renderPaymentSummary() {
                 console.log('Unexpected error. Try again later')
             }
             
-            window.location.href = 'orders.html'
+            window.location.pathname = "/orders.html"
         })
 }

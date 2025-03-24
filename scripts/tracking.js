@@ -1,25 +1,21 @@
-import { getDeliveryDate, getDeliveryOption } from "../data/deliverOptions.js";
+import { updateCartQuantityItems } from "../data/cart.js";
 import { getProduct, loadProductsFetch } from "../data/products.js";
 
 const productDetails = JSON.parse(localStorage.getItem('trackingProduct'))||[]
 
 
-export async function productTracking(productId, productQuantity) {
+export async function productTracking(productId, productQuantity, deliveryDate) {
     await loadProductsFetch()
 
     let trackingHTML = ''
     let matchingProduct = getProduct(productId)
-
-    let deliveryOption = getDeliveryOption(productId)
-
-    const dateString = getDeliveryDate(deliveryOption)
-    
+        
     trackingHTML = `<a class="back-to-orders-link link-primary" href="orders.html">
                 View all orders
             </a>
 
             <div class="delivery-date">
-                Arriving on ${dateString}
+                Arriving on ${deliveryDate}
             </div>
 
             <div class="product-info">
@@ -51,7 +47,13 @@ export async function productTracking(productId, productQuantity) {
     document.querySelector('.js-order-tracking')
         .innerHTML = trackingHTML;
     
+    const cartQuantity = updateCartQuantityItems() 
+    document.querySelector('.js-cart-quantity')
+        .innerHTML = cartQuantity
+    
 }
 
 
-productTracking(productDetails.productId, productDetails.productQuantity)
+
+if(window.location.pathname === "/tracking.html") {
+    productTracking(productDetails.productId, productDetails.productQuantity, productDetails.deliveryDate)}

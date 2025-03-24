@@ -2,7 +2,7 @@ import { cart, updateCartQuantityItems } from "../data/cart.js";
 import { getDeliveryDate, getDeliveryOption } from "../data/deliverOptions.js";
 import { getProduct, loadProductsFetch } from "../data/products.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'
-import { productTracking } from "./tracking.js";
+
 
 export const orders = JSON.parse(localStorage.getItem('orders')) || [];
 
@@ -21,7 +21,7 @@ function saveOrderToStorage() {
 
 
 
-async function returnOrderSummary(){
+export async function returnOrderSummary(){
     await loadProductsFetch()
 
     let orderHTML = ''
@@ -31,9 +31,9 @@ async function returnOrderSummary(){
 
         let matchingProduct = getProduct(productId)
 
-        const deliverOptionId = cartItem.deliverOptionId
+        const deliveryOptionId = cartItem.deliveryOptionId
 
-        let deliveryOption = getDeliveryOption(deliverOptionId)
+        let deliveryOption = getDeliveryOption(deliveryOptionId)
 
         const today = dayjs();
         const todayFormat = today.format('dddd, MMMM D')
@@ -85,7 +85,8 @@ async function returnOrderSummary(){
                 <a href="tracking.html">
                     <button class="track-package-button button-secondary js-track-package"
                     data-product-id = "${matchingProduct.id}"
-                    data-product-quantity = "${cartItem.quantity}">
+                    data-product-quantity = "${cartItem.quantity}"
+                    data-product-delivery-date = "${dateString}">
                     Track package
                     </button>
                 </a>
@@ -108,11 +109,14 @@ async function returnOrderSummary(){
         link.addEventListener('click', () => {
             const productId = link.dataset.productId
             const productQuantity = link.dataset.productQuantity
-            localStorage.setItem('trackingProduct', JSON.stringify({productId: `${productId}`, productQuantity: `${productQuantity}`})); 
+            const deliveryDate = link.dataset.productDeliveryDate
+            localStorage.setItem('trackingProduct', JSON.stringify({productId: `${productId}`, productQuantity: `${productQuantity}`, deliveryDate: `${deliveryDate}`})); 
         })
     })
 
 }
 
 returnOrderSummary()
+
+
 
