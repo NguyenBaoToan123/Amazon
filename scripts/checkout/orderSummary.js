@@ -9,9 +9,8 @@ import { renderPaymentSummary } from "./paymentSummary.js";
 export function renderOrderSummary() {
     if(cart.length === 0) {
         document.querySelector('.js-page-title')
-            .innerHTML = "You do not have any orders"
-        
-        return
+            .innerHTML = "You do not have any orders"    
+    return
 
     } else {
 
@@ -140,10 +139,11 @@ export function renderOrderSummary() {
                     updateDeliveryOption(productId, deliveryOptionId)
                     renderOrderSummary()
                     renderPaymentSummary()
-
                 })
             })
         }
+
+        
 }
 
 

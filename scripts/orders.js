@@ -2,7 +2,7 @@ import { cart, updateCartQuantityItems } from "../data/cart.js";
 import { getDeliveryDate, getDeliveryOption } from "../data/deliverOptions.js";
 import { getProduct, loadProductsFetch } from "../data/products.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'
-
+import { formatCurrency } from "./utils/money.js";
 
 export const orders = JSON.parse(localStorage.getItem('orders')) || [];
 
@@ -54,7 +54,8 @@ export async function returnOrderSummary() {
                             </div>
                             <div class="order-total">
                                 <div class="order-header-label">Total:</div>
-                                <div>${matchingProduct.getPrice()}</div>
+                                <div>$${formatCurrency(matchingProduct.priceCents*orderItem.quantity)}
+</div>
                             </div>
                             </div>
         
@@ -126,6 +127,4 @@ export async function returnOrderSummary() {
     console.log(orders)
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    returnOrderSummary();
-});
+returnOrderSummary()

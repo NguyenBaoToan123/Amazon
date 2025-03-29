@@ -97,7 +97,7 @@ function renderProductsGrid (){
       
               const productId = button.dataset.productId;
               console.log(`Sản phẩm ID: ${productId}, Số lượng: ${quantity}`);
-                addToCart(productId);
+                addToCart(productId, quantity);
                 updateCartQuantity();
             })
         });
