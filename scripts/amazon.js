@@ -61,7 +61,7 @@ function renderProductsGrid (){
               </button>
             </div>
             
-        `
+        ` 
     })
       
     document.querySelector('.js-products-grid')
@@ -85,8 +85,18 @@ function renderProductsGrid (){
 
     document.querySelectorAll('.js-add-to-cart')
         .forEach((button) => {
-            button.addEventListener('click', () => {
-                const productId = button.dataset.productId;
+            button.addEventListener('click', (event) => {
+                // Lấy product container của sản phẩm được click
+              const productContainer = event.target.closest('.product-container');
+      
+              // Lấy số lượng đã chọn từ dropdown (select)
+              const quantity = productContainer.querySelector('select').value;
+      
+              // Lấy ID của sản phẩm từ data attribute
+              //const productId = event.target.getAttribute('data-product-id');
+      
+              const productId = button.dataset.productId;
+              console.log(`Sản phẩm ID: ${productId}, Số lượng: ${quantity}`);
                 addToCart(productId);
                 updateCartQuantity();
             })

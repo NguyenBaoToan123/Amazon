@@ -29,7 +29,7 @@ async function loadPage() {
     
 
     renderOrderSummary();
-    renderPaymentSummary();
+    renderPaymentSummary()
 
     return 'value2'
     //= resolve 'value2' 
