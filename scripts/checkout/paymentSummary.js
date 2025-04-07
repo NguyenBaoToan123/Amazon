@@ -59,7 +59,7 @@ export function renderPaymentSummary() {
                         <div>Order total:</div>
                         <div class="payment-summary-money">$${formatCurrency(totalCents)}</div>
                     </div>
-
+                
                     <button class="place-order-button button-primary js-place-order">
                         Place your order
                     </button>
@@ -95,7 +95,7 @@ export function renderPaymentSummary() {
                             }catch(error) {
                                 console.log('Unexpected error. Try again later')
                             }
-                            window.location.pathname = "/orders.html";
+                            window.location.pathname = "./orders.html";
                     }
                     })
         }
