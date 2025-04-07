@@ -59,11 +59,11 @@ export function renderPaymentSummary() {
                         <div>Order total:</div>
                         <div class="payment-summary-money">$${formatCurrency(totalCents)}</div>
                     </div>
-                
+                    
                     <button class="place-order-button button-primary js-place-order">
                         Place your order
                     </button>
-                `
+                    `
                 document.querySelector('.js-payment-summary')
                     .innerHTML = paymentSummaryHTML;
 
@@ -95,9 +95,19 @@ export function renderPaymentSummary() {
                             }catch(error) {
                                 console.log('Unexpected error. Try again later')
                             }
-                            window.location.pathname = "./orders.html";
+                        navigate('orders.html');
                     }
                     })
         }
 
+        function navigate(page) {
+            const isGitHub = window.location.hostname.includes('github.io');
+            const basePath = isGitHub ? '/Amazon/' : '/';
+            window.location.href = `${basePath}${page}`;
+          }
+
 }
+
+
+  
+  
