@@ -88,7 +88,7 @@ function renderProductsGrid (){
             button.addEventListener('click', (event) => {
                 // Lấy product container của sản phẩm được click
               const productContainer = event.target.closest('.product-container');
-      
+              console.log(productContainer)
               // Lấy số lượng đã chọn từ dropdown (select)
               const quantity = productContainer.querySelector('select').value;
       
